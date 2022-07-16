@@ -6,9 +6,12 @@ function onScoreUpdate(dropPosition, bounciness, size, bucketLabel) {
 
 function runAnalysis() {
   const testSetSize = 100;
-  const [testSet, trainingSet] = splitDataset(minMax(outputs, 3), testSetSize);
+  const k = 10;
 
-  _.range(1, 20).forEach((k) => {
+  _.range(0, 3).forEach((feature) => {
+    const data = _.map(outputs, (row) => [row[feature], _.last(row)]);
+    const [testSet, trainingSet] = splitDataset(minMax(data, 1), testSetSize);
+
     const accuracy = _.chain(testSet)
       .filter(
         (testPoint) =>
@@ -18,7 +21,7 @@ function runAnalysis() {
       .divide(testSetSize)
       .value();
 
-    console.log("k is", k, " and Accuracy is ", accuracy);
+    console.log("feature is", feature, " and Accuracy is ", accuracy);
   });
 }
 
