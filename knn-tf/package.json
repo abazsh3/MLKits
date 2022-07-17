@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
   "dependencies": {
     "@tensorflow/tfjs-node": "^3.18.0",
     "lodash": "^4.17.21",
